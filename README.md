@@ -1,9 +1,9 @@
 ## 📚 Table of Contents
 
-1. [[#Introduction]]
-2. [[#Data Exploration]]
-3. [[#Data Cleaning & Manipulation]]
-4. [[#Exploratory Data Analysis]]
+1. [Introduction](#Introduction)
+2. [Data Exploration](#Data Exploration)
+3. [Data Cleaning & Manipulation](#Data Cleaning & Manipulation)
+4. [Exploratory Data Analysis](#Exploratory Data Analysis)
 ## Introduction
 
 ![[Pasted image 20240115214840.png]]
@@ -12,17 +12,17 @@ Clinical trials serve as the backbone of medical research, providing invaluable 
 This data set contains the clinical trial registration records from 10 large pharmaceutical companies, from which I aim to gain an understanding of the clinical trial landscape.
 #### Questions
 
-- [[#Which companies conducted the most clinical trials?]]
-- [[#How many clinical trials were conducted each year?]]
-- [[#What is the distribution of clinical trials across different phases?]]
-- [[#Which clinical trials had the highest enrolment?]]
-- [[#What is the average enrolment size for clinical trials conducted by each company?]]
-- [[#What is the distribution of clinical trial statuses?]]
-- [[#What are the most common conditions being tested in clinical trials?]]
-- [[#Are there any patterns or trends in the status of clinical trials over the years?]]
-- [[#What is the distribution of phases for the top 5 conditions]]
-- [[#What is the distribution of clinical trial phases conducted by each company?]]
-- [[#How does the status of clinical trials differ at each company?]]
+- [Which companies conducted the most clinical trials?](#Which companies conducted the most clinical trials?)
+- [How many clinical trials were conducted each year?](#How many clinical trials were conducted each year?)
+- [What is the distribution of clinical trials across different phases?](#What is the distribution of clinical trials across different phases?)
+- [Which clinical trials had the highest enrolment?](#Which clinical trials had the highest enrolment?)
+- [What is the average enrolment size for clinical trials conducted by each company?](#What is the average enrolment size for clinical trials conducted by each company?)
+- [What is the distribution of clinical trial statuses?](#What is the distribution of clinical trial statuses?)
+- [What are the most common conditions being tested in clinical trials?](#What are the most common conditions being tested in clinical trials?)
+- [Are there any patterns or trends in the status of clinical trials over the years?](#Are there any patterns or trends in the status of clinical trials over the years?)
+- [What is the distribution of phases for the top 5 conditions](#What is the distribution of phases for the top 5 conditions)
+- [What is the distribution of clinical trial phases conducted by each company?](#What is the distribution of clinical trial phases conducted by each company?)
+- [How does the status of clinical trials differ at each company?](#How does the status of clinical trials differ at each company?)
 #### Tools
 
 SQL in Microsoft SQL Server (MSSQL)
@@ -626,6 +626,3 @@ ORDER BY company;
 - AbbVie has a high percentage of clinical trials in their recruiting and active phase, this is likely due to AbbVie being a newer pharmaceutical company, being founded in 2013
 - Pfizer, Merck and Gilead has a high percentage of terminated clinical trials
 - GSK has a high percentage of completed clinical trials
-
-
-
