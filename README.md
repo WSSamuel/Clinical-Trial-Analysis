@@ -6,7 +6,6 @@
 4. [Exploratory Data Analysis](#exploratory-data-analysis)
 ## Introduction
 
-![[Pasted image 20240115214840.png]]
 Clinical trials serve as the backbone of medical research, providing invaluable insights into the efficacy and safety of novel treatments and interventions. 
 
 This data set contains the clinical trial registration records from 10 large pharmaceutical companies, from which I aim to gain an understanding of the clinical trial landscape.
