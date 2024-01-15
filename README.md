@@ -31,14 +31,14 @@ The analysis will be done on this [dataset](https://doi.org/10.7910/DVN/S8C77Q) 
 ## Data Exploration
 
 Understanding of the dataset's characteristics, such as it's structure, contents, and data types. 
-##### Querying contents
+#### Querying contents
 
 ```sql
 SELECT TOP 5 *
 FROM aero_data;
 ```
 
-##### Querying column names and their data type
+#### Querying column names and their data type
 ```sql
 SELECT COLUMN_NAME
 	,DATA_TYPE
@@ -59,53 +59,53 @@ WHERE TABLE_NAME = 'aero_data';
 | Status            | nvarchar  |
 | Meshes            | nvarchar  |
 | Condition_Final   | nvarchar  |
-##### Are there any NULL values?
+#### Are there any NULL values?
 
 ```sql
 SELECT COUNT(CASE 
-			WHEN NCT IS NULL
-				THEN 1
+		WHEN NCT IS NULL
+			THEN 1
 			END) AS nulls_in_nct
 	,COUNT(CASE 
-			WHEN Title IS NULL
-				THEN 1
-			END) AS nulls_in_title
+		WHEN Title IS NULL
+			THEN 1
+		END) AS nulls_in_title
 	,COUNT(CASE 
-			WHEN Summary IS NULL
-				THEN 1
-			END) AS nulls_in_summary
+		WHEN Summary IS NULL
+			THEN 1
+		END) AS nulls_in_summary
 	,COUNT(CASE 
-			WHEN Start_Year IS NULL
-				THEN 1
-			END) AS nulls_in_start_year
+		WHEN Start_Year IS NULL
+			THEN 1
+		END) AS nulls_in_start_year
 	,COUNT(CASE 
-			WHEN Start_Month IS NULL
-				THEN 1
-			END) AS nulls_in_start_month
+		WHEN Start_Month IS NULL
+			THEN 1
+		END) AS nulls_in_start_month
 	,COUNT(CASE 
-			WHEN Phase IS NULL
-				THEN 1
-			END) AS nulls_in_phase
+		WHEN Phase IS NULL
+			THEN 1
+		END) AS nulls_in_phase
 	,COUNT(CASE 
-			WHEN Conditions IS NULL
-				THEN 1
-			END) AS nulls_in_conditions
+		WHEN Conditions IS NULL
+			THEN 1
+		END) AS nulls_in_conditions
 	,COUNT(CASE 
-			WHEN Enrollment IS NULL
-				THEN 1
-			END) AS nulls_in_enrollment
+		WHEN Enrollment IS NULL
+			THEN 1
+		END) AS nulls_in_enrollment
 	,COUNT(CASE 
-			WHEN STATUS IS NULL
-				THEN 1
-			END) AS nulls_in_status
+		WHEN STATUS IS NULL
+			THEN 1
+		END) AS nulls_in_status
 	,COUNT(CASE 
-			WHEN Meshes IS NULL
-				THEN 1
-			END) AS nulls_in_meshes
+		WHEN Meshes IS NULL
+			THEN 1
+		END) AS nulls_in_meshes
 	,COUNT(CASE 
-			WHEN Condition_Final IS NULL
-				THEN 1
-			END) AS nulls_in_condition_final
+		WHEN Condition_Final IS NULL
+			THEN 1
+		END) AS nulls_in_condition_final
 FROM aero_data;
 ```
 
@@ -143,8 +143,8 @@ GROUP BY NCT
 HAVING COUNT(*) > 1;
 ```
 
-There are 1325 rows of duplicate data
-##### How complete is the dataset?
+- There are 1325 rows of duplicate data
+#### How complete is the dataset?
 
 Using Start_Year, I want to see how complete the dataset is, by seeing the number of clinical trials present per year
 
@@ -194,11 +194,11 @@ ORDER BY Start_Year;
 | 2018       | 518               |
 | 2019       | 49                |
 | 2020       | 2                 |
-It is clear that the dataset is incomplete for many years
+- It is clear that the dataset is incomplete for many years
 
-##### Ensuring the data looks correct
+#### Ensuring the data looks correct
 
-Looking at the years, I saw that there was an outlier with one trial having a Start_Year of 1931. This prompted me to see if there were other rows with incorrect data. 
+Looking at the years, I saw one trial having a Start_Year of 1931. This prompted me to see if there were other rows with incorrect data. 
 
 ```sql
 SELECT DISTINCT Phase
@@ -213,10 +213,10 @@ SELECT DISTINCT Condition_Final
 FROM aero_data
 ```
 
-The only column I found odd values was N/A in the Phase column, however, I discovered that these are trials without FDA-defined phases.
+- The only column I found odd was N/A in the Phase column, however, I discovered that these are trials without FDA-defined phases.
 ## Data Cleaning & Manipulation
 
-Before analysis, I need to
+Before analysis, I need to:
 1. Split the NCT column to get the nct number and company name
 2. Remove the columns; Title, Summary, Start_Month, Condition, and Meshes
 3. Remove duplicate data
@@ -250,7 +250,7 @@ FROM aero_data
 ## Exploratory Data Analysis
 
 Now that the data is cleaned and well structured, it is time to question the data. 
-##### Which companies conducted the most clinical trials?
+#### Which companies conducted the most clinical trials?
 
 ```sql
 SELECT company
@@ -272,7 +272,7 @@ ORDER BY number_of_trials DESC;
 | Bayer    | 616               |
 | Gilead   | 415               |
 | AbbVie   | 413               |
-##### How many clinical trials were conducted each year?
+#### How many clinical trials were conducted each year?
 
 ```sql
 SELECT year
@@ -304,7 +304,7 @@ ORDER BY year;
 | 2017 | 472               |
 | 2018 | 518               |
 - The number of clinical trials peaked at 2007, and has declined since then
-##### What is the distribution of clinical trials across different phases?
+#### What is the distribution of clinical trials across different phases?
 
 ```sql
 SELECT phase
@@ -325,7 +325,7 @@ ORDER BY phase;
 | Phase 3           | 35.16                 |
 | Phase 4           | 14.83                 |
 - The majority of clinical trials are in phase 3, followed by phase 2, phase 1 and phase 4 
-##### Which clinical trials had the highest enrolment?
+#### Which clinical trials had the highest enrolment?
 
 ```sql
 SELECT TOP 5 *
@@ -342,7 +342,7 @@ ORDER BY enrollment DESC;
 | NCT02374450 | GSK | 2015 | N/A | 52192 | Recruiting | Malaria |
 |  |  |  |  |  |  |  |
 - These clinical trials led to the introduction of vaccines against Pneumonia, Rotavirus, and Malaria
-##### What is the average enrolment size for clinical trials conducted by each company?
+#### What is the average enrolment size for clinical trials conducted by each company?
 
 ```sql
 SELECT company
@@ -364,7 +364,7 @@ ORDER BY average_enrollment DESC;
 | JNJ      | 298                 |
 | AbbVie   | 260                 |
 | Gilead   | 242                 |
-##### What is the distribution of clinical trial statuses?
+#### What is the distribution of clinical trial statuses?
 
 ```sql
 SELECT STATUS
@@ -387,7 +387,7 @@ ORDER BY number_of_trials DESC;
 | Suspended                | 15                |
 - This uneven distribution may explain the peak in clinical trials in 2007, followed by a steady decline
 - This shows that this dataset likely struggles with selection bias, selecting for completed clinical trials
-##### What are the most common conditions being tested in clinical trials?
+#### What are the most common conditions being tested in clinical trials?
 ```sql
 SELECT TOP 5 condition
 	,COUNT(condition) AS number_of_trials
@@ -404,7 +404,7 @@ ORDER BY number_of_trials DESC;
 | Hypertension                                | 336               |
 | Arthritis, Rheumatoid                       | 333               |
 - These findings correlate well with the prevalence of these conditions
-##### Are there any patterns or trends in the status of clinical trials over the years?
+#### Are there any patterns or trends in the status of clinical trials over the years?
 
 ```sql
 SELECT *
@@ -450,7 +450,7 @@ ORDER BY year;
 | 2018 | 35 | 34 | 4 | 63 | 349 | 4 | 6 | 0 | 23 |
 - The low number of active clinical trials during 2017/18 is likely due to clinical trials still recruiting at this time. 
 - The peak in completed and terminated trials matches the distribution of clinical trials per year
-##### What is the distribution of phases for the top 5 conditions 
+#### What is the distribution of phases for the top 5 conditions 
 ```sql
 SELECT TOP 5 condition
 	,COUNT(condition) AS number_of_trials
@@ -506,7 +506,7 @@ ORDER BY number_of_trials DESC;
 | Pulmonary Disease, Chronic Obstructive   | 339              | 3               | 0             | 91      | 3         | 74      | 1         | 117     | 50      |
 | Hypertension                             | 336              | 0               | 0             | 33      | 2         | 40      | 3         | 152     | 106     |
 | Arthritis, Rheumatoid                    | 333              | 4               | 0             | 47      | 6         | 88      | 2         | 130     | 56      |
-##### What is the distribution of clinical trial phases conducted by each company?
+#### What is the distribution of clinical trial phases conducted by each company?
 ```sql
 SELECT company
 	,CONVERT(DECIMAL(5, 2), ISNULL([Early Phase 1], 0) * 100.0 / NULLIF(SUM([Early Phase 1] + [N/A] + [Phase 1] + [Phase 1/Phase 2] + [Phase 2] + [Phase 2/Phase 3] + [Phase 3] + [Phase 4]), 0)) AS percent_early_phase_1
@@ -568,7 +568,7 @@ ORDER BY company;
 | Roche   | 0.00                  | 2.50       | 14.97            | 2.68              | 27.26            | 0.83                | 35.86            | 15.90            |
 | Sanofi  | 0.00                  | 0.73       | 11.47            | 3.53              | 25.40            | 1.00                | 36.93            | 20.93            |
 - The majority of companies have the most clinical trials in phase 3, matching the average distribution
-##### How does the status of clinical trials differ at each company?
+#### How does the status of clinical trials differ at each company?
 ```sql
 SELECT company
 	,CONVERT(DECIMAL(5, 2), ISNULL([Active, not recruiting], 0) * 100.0 / NULLIF(SUM([Active, not recruiting] + [Completed] + [Enrolling by invitation] + [Not yet recruiting] + [Recruiting] + [Suspended] + [Terminated] + [Unknown status] + [Withdrawn]), 0)) AS percent_active_not_recruiting
