@@ -1,7 +1,7 @@
 ## 📚 Table of Contents
 
 1. [Introduction](#Introduction)
-2. [Data Exploration](#data_exploration)
+2. [Data Exploration](#data-exploration)
 3. [Data Cleaning & Manipulation](#Data Cleaning & Manipulation)
 4. [Exploratory Data Analysis](#Exploratory Data Analysis)
 ## Introduction
