@@ -65,7 +65,7 @@ WHERE TABLE_NAME = 'aero_data';
 SELECT COUNT(CASE 
 		WHEN NCT IS NULL
 			THEN 1
-			END) AS nulls_in_nct
+		END) AS nulls_in_nct
 	,COUNT(CASE 
 		WHEN Title IS NULL
 			THEN 1
