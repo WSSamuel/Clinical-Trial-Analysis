@@ -27,7 +27,7 @@ This data set contains the clinical trial registration records from 10 large pha
 SQL in Microsoft SQL Server (MSSQL)
 #### Data Source
 
-The analysis will be done on this [dataset](https://doi.org/10.7910/DVN/S8C77Q)from Harvard Dataverse under this [license.](https://creativecommons.org/publicdomain/zero/1.0/)
+The analysis will be done on this [dataset](https://doi.org/10.7910/DVN/S8C77Q) from Harvard Dataverse under this [license.](https://creativecommons.org/publicdomain/zero/1.0/)
 ## Data Exploration
 
 Understanding of the dataset's characteristics, such as it's structure, contents, and data types. 
